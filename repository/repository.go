@@ -1,9 +1,25 @@
 package repository
 
-type Repository interface{}
+import (
+	"context"
 
-type repository struct{}
+	"github.com/bayudava29/go-clean-arc/config"
+)
 
-func InitRepository() Repository {
-	return &repository{}
+type Repository interface {
+	GetData(c context.Context)
+}
+
+type repository struct {
+	hbaseConn []config.HbaseConnection
+}
+
+func InitRepository(hbase []config.HbaseConnection) Repository {
+	return &repository{
+		hbaseConn: hbase,
+	}
+}
+
+func (repository *repository) GetData(c context.Context) {
+	// Instruction for GetData Repository
 }

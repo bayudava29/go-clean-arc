@@ -1,9 +1,24 @@
 package delivery
 
-type Delivery interface{}
+import (
+	"github.com/bayudava29/go-clean-arc/usecase"
+	"github.com/gin-gonic/gin"
+)
 
-type delivery struct{}
+type Delivery interface {
+	GetData(c *gin.Context)
+}
 
-func InitDelivery() Delivery {
-	return &delivery{}
+type delivery struct {
+	Usecase usecase.Usecase
+}
+
+func InitDelivery(usecase usecase.Usecase) Delivery {
+	return &delivery{
+		Usecase: usecase,
+	}
+}
+
+func (delivery *delivery) GetData(c *gin.Context) {
+	// Instruction for GetData Delivery
 }

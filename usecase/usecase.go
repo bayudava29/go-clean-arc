@@ -1,9 +1,25 @@
 package usecase
 
-type Usecase interface{}
+import (
+	"context"
 
-type usecase struct{}
+	"github.com/bayudava29/go-clean-arc/repository"
+)
 
-func InitUsecase() Usecase {
-	return &usecase{}
+type Usecase interface {
+	GetData(c context.Context)
+}
+
+type usecase struct {
+	Repository repository.Repository
+}
+
+func InitUsecase(repository repository.Repository) Usecase {
+	return &usecase{
+		Repository: repository,
+	}
+}
+
+func (usecase *usecase) GetData(c context.Context) {
+	// Instruction for GetData Usecase
 }
